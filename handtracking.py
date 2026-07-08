@@ -13,8 +13,9 @@ while True:
     imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
     results = hands.process(imageRBG)
     
-    print(results.multi_hand_landmarks)
-    # for hand in results:
+    if results.multi_hand_landmarks:
+        for hand in results.multi_hand_landmarks:
+            
 
 
 
