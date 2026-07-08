@@ -19,11 +19,11 @@ while True:
     if results.multi_hand_landmarks:
         for hand in results.multi_hand_landmarks:
             for id,lndmrk in enumerate(hand.landmark):
-                print(id,lndmrk)
+                # print(id,lndmrk)
                 h,w,c = image.shape
                 ## normalizing now
-                cx,cy = int(lndmrk.x**w), int(lndmrk.y**h)
-                # print(id,cx,cy)
+                cx,cy = int(lndmrk.x*w), int(lndmrk.y*h)
+                print(id,cx,cy)
             mpDraw.draw_landmarks(image,hand,mpHands.HAND_CONNECTIONS)
     cTime = time.time()
     fps = 1/(cTime-pTime)
