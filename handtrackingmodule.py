@@ -37,8 +37,13 @@ def main(self):
     while True:
         ## getting frame
         success, image = cap.read()
-        detector.findHands(image,True)
-        self.findHands(image,True)
+        img = detector.findHands(image,True)
+        cTime = time.time()
+        fps = 1/(cTime-pTime)
+        pTime = cTime
+        cv2.putText(image,str(int(fps)),(10,70),cv2.FONT_HERSHEY_COMPLEX,3,(255,8,255))
+        cv2.imshow("Image", image)
+        cv2.waitKey(1)
         cv2.waitKey(1)
 
 
