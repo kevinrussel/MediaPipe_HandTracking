@@ -2,9 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 
-cap = cv2.VideoCapture(0)
-# cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-# cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
 mpDraw = mp.solutions.drawing_utils
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False,max_num_hands=2,min_detection_confidence=0.5,min_tracking_confidence=0.5)
@@ -15,6 +13,12 @@ class handDetector():
         self.max_hands = max_hands
         self.min_detection_confidence = min_detection_confidence
         self.track_confidence = track_confidence
+
+        self.mpHands = mp.solutions.hands
+        self.hands = self.mpHands.Hands(self.mode,self.max_hands,self.min_detection_confidence,self.track_confidence)
+        
+        
+
         pass
 def main():
     cap = cv2.VideoCapture(0)
