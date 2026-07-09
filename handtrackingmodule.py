@@ -14,8 +14,17 @@ class handDetector():
         self.hands = self.mpHands.Hands(self.mode,self.max_hands,self.min_detection_confidence,self.track_confidence)
         self.mpDraw = mp.solutions.drawing_utils
 
-def findHands(self,image,draw=True):
-      
+    def findHands(self,image,draw=True):
+        imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+        results = self.hands.process(imageRBG)
+        if results.multi_hand_landmarks:
+            for hand in results.multi_hand_landmarks:
+                for id,lndmrk in enumerate(hand.landmark):
+                    h,w,c = image.shape
+                    ## normalizing now
+                    cx,cy = int(lndmrk.x*w), int(lndmrk.y*h)
+                    print(id,cx,cy)
+                mpDraw.draw_landmarks(image,hand,mpHands.HAND_CONNECTIONS)
 def main():
     cap = cv2.VideoCapture(0)
     pTime = 0
