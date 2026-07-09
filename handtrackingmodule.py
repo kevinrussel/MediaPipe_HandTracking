@@ -9,7 +9,13 @@ mpDraw = mp.solutions.drawing_utils
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False,max_num_hands=2,min_detection_confidence=0.5,min_tracking_confidence=0.5)
 
-
+class handDetector():
+    def __init__(self, mode = False,max_hands = 2, min_detection_confidence = 0.5, track_confidence =0.5):
+        self.mode = mode
+        self.max_hands = max_hands
+        self.min_detection_confidence = min_detection_confidence
+        self.track_confidence = track_confidence
+        pass
 def main():
     cap = cv2.VideoCapture(0)
     pTime = 0
