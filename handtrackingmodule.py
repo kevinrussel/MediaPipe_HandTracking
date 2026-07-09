@@ -13,9 +13,9 @@ class handDetector():
         self.mpHands = mp.solutions.hands
         self.hands = self.mpHands.Hands(self.mode,self.max_hands,self.min_detection_confidence,self.track_confidence)
         self.mpDraw = mp.solutions.drawing_utils
-        
 
-        pass
+def findHands(self,image,draw=True):
+      
 def main():
     cap = cv2.VideoCapture(0)
     pTime = 0
