@@ -8,9 +8,13 @@ cap = cv2.VideoCapture(0)
 mpDraw = mp.solutions.drawing_utils
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False,max_num_hands=2,min_detection_confidence=0.5,min_tracking_confidence=0.5)
-pTime = 0
-cTime = 0
-while True:
+
+
+def main():
+    cap = cv2.VideoCapture(0)
+    pTime = 0
+    cTime = 0
+    while True:
     ## getting frame
     success, image = cap.read() 
     imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
@@ -30,7 +34,6 @@ while True:
     cv2.putText(image,str(int(fps)),(10,70),cv2.FONT_HERSHEY_COMPLEX,3,(255,8,255))
     cv2.imshow("Image", image)
     cv2.waitKey(1)
-
 
 
 
