@@ -19,7 +19,6 @@ while True:
     if results.multi_hand_landmarks:
         for hand in results.multi_hand_landmarks:
             for id,lndmrk in enumerate(hand.landmark):
-                # print(id,lndmrk)
                 h,w,c = image.shape
                 ## normalizing now
                 cx,cy = int(lndmrk.x*w), int(lndmrk.y*h)
@@ -30,7 +29,7 @@ while True:
     pTime = cTime
     cv2.putText(image,str(int(fps)),(10,70),cv2.FONT_HERSHEY_COMPLEX,3,(255,8,255))
     cv2.imshow("Image", image)
-    cv2.waitKey(2)
+    cv2.waitKey(1)
 
 
 
