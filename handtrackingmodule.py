@@ -6,15 +6,16 @@ class handDetector():
 
 
     def __init__(self, mode = False,max_hands = 2, min_detection_confidence = 0.5, track_confidence =0.5):
-        print("hitting")
+        
         self.mode = mode
         self.max_hands = max_hands
         self.min_detection_confidence = min_detection_confidence
         self.track_confidence = track_confidence
         self.mpHands = mp.solutions.hands
-        self.hands = self.mpHands.Hands(self.mode,self.max_hands,self.min_detection_confidence,self.track_confidence)
+        
+        self.hands = self.mpHands.Hands(self.mode,self.max_hands,1,self.min_detection_confidence,self.track_confidence)
         self.mpDraw = mp.solutions.drawing_utils
-        print("hitting")
+       
 
     def findHands(self,image,draw=True):
         imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
