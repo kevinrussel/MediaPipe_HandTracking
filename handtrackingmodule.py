@@ -30,7 +30,12 @@ class handDetector():
         landmarklist = []
         if self.results.multi_hand_landmarks:
             myhand = self.results.multi_hand_landmarks[handNumber]
-            
+            for id,landmark in enumerate(myhand.landmark):
+                h,w,c = image.shape
+                ## normalizing now
+                cx,cy = int(landmark.x*w), int(landmark.y*h)
+                landmarklist.append([id,cx,cy])
+        return landmarklist
 
 def main():
     cap = cv2.VideoCapture(0)
@@ -42,6 +47,10 @@ def main():
         ## getting frame
         success, image = cap.read()
         img = detector.findHands(image,True)
+        landmarklist = detector.findposition(image)
+
+        if(len(landmarklist)!= 0):
+            print(landmarklist[4])
         cTime = time.time()
         fps = 1/(cTime-pTime)
         pTime = cTime
