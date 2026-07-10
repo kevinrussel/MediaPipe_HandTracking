@@ -31,6 +31,9 @@ class handDetector():
                 #     print(id,cx,cy)
                 # mpDraw.draw_landmarks(image,hand,mpHands.HAND_CONNECTIONS)
         return image
+    
+    def FindPosition(self):
+        
 def main():
     cap = cv2.VideoCapture(0)
     pTime = 0
