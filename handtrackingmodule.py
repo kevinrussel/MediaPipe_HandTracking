@@ -32,7 +32,9 @@ class handDetector():
                 # mpDraw.draw_landmarks(image,hand,mpHands.HAND_CONNECTIONS)
         return image
     
-    def findposition(self):
+    def findposition(self,image,handNumber = 0,):
+        height,width,channel = image.shape
+        cx,cy = int(())
 
 def main():
     cap = cv2.VideoCapture(0)
