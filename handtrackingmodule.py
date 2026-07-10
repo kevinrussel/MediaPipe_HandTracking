@@ -19,16 +19,18 @@ class handDetector():
 
     def findHands(self,image,draw=True):
         imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-        results = self.hands.process(imageRBG)
-        if results.multi_hand_landmarks:
-            for hand in results.multi_hand_landmarks:
+        self.results = self.hands.process(imageRBG)
+        if self.results.multi_hand_landmarks:
+            for hand in self.results.multi_hand_landmarks:
                 if draw:
                     self.mpDraw.draw_landmarks(image,hand,self.mpHands.HAND_CONNECTIONS)
         return image
     
-    def findposition(self,image,handNumber = 0,):
-        height,width,channel = image.shape
-        cx,cy = int(())
+    def findposition(self,image,handNumber = 0,draw=True):
+        landmarklist = []
+        if self.results.multi_hand_landmarks:
+            myhand = self.results.multi_hand_landmarks[handNumber]
+            
 
 def main():
     cap = cv2.VideoCapture(0)
