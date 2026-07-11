@@ -26,7 +26,7 @@ class handDetector():
                     self.mpDraw.draw_landmarks(image,hand,self.mpHands.HAND_CONNECTIONS)
         return image
     
-    def findposition(self,image,handNumber = 1,draw=True):
+    def findposition(self,image,handNumber = 0,draw=True):
         landmarklist = []
         if self.results.multi_hand_landmarks:
             if len(self.results.multi_hand_landmarks) == 2:
