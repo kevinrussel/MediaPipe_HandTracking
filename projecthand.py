@@ -15,7 +15,6 @@ while True:
     success, image = cap.read()
     img = hand.findHands(image,True)
     left_hand,right_hand = hand.findposition(image)
-    print(left_hand)
     if(len(left_hand)!= 0) and len(right_hand) != 0:
         lefthandpoint = (left_hand[4][1],left_hand[4][2])
         righthandpoint = (right_hand[4][1],right_hand[4][2])
