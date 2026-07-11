@@ -29,8 +29,8 @@ class handDetector():
     def draw_line(self,image,left_point,right_point):
         return cv2.line(image,left_point,right_point,(0, 255, 0), 3)
     def findposition(self,image,handNumber = 0,draw=True):
-        landmarklist = []
-        specific_point = []
+        left_hand = []
+        right_hand = []
         if self.results.multi_hand_landmarks:
             if len(self.results.multi_hand_landmarks) == 2:
                 myhand = self.results.multi_hand_landmarks[handNumber]
@@ -38,9 +38,7 @@ class handDetector():
                     h,w,c = image.shape
                     ## normalizing now
                     cx,cy = int(landmark.x*w), int(landmark.y*h)
-                    landmarklist.append([id,cx,cy])
-                    if id == 4:
-                        specific_point.append([id,cx,cy])
+                    lefthand.append([id,cx,cy])
 
                 myhand = self.results.multi_hand_landmarks[1]
                 for id,landmark in enumerate(myhand.landmark):
