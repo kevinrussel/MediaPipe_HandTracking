@@ -18,6 +18,10 @@ while True:
     if(len(landmarklist)!= 0):
         
         print(specific_point)
+        left_hand = (specific_point[0][1],specific_point[0][2])
+        right_hand = (specific_point[1][1],specific_point[1][2])
+        print(left_hand)
+        print(right_hand)
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
