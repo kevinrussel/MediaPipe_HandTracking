@@ -17,7 +17,11 @@ while True:
     success, image = cap.read()
     img = hand.findHands(image,True)
     left_hand,right_hand = hand.findposition(image)
-    if(len(left_hand)!= 0) and len(right_hand) != 0:
+    if(len(left_hand)!= 0) and len(right_hand) == 0:
+        thumbpoint = (left_hand[4][1],left_hand[4][2])
+        indexpoint = (left_hand[8][1],left_hand[8][2])
+        img = hand.draw_line(img,thumbpoint,indexpoint)
+    elif(len(left_hand)!= 0) and len(right_hand) == 0:
         thumbpoint = (left_hand[4][1],left_hand[4][2])
         indexpoint = (left_hand[8][1],left_hand[8][2])
         img = hand.draw_line(img,thumbpoint,indexpoint)

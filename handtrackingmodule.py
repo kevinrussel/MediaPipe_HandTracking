@@ -56,6 +56,9 @@ class handDetector():
                 left_hand = self.append_hand_positions_to_list(myhand,h,w,c)
                 myhand = self.results.multi_hand_landmarks[1]
                 right_hand = self.append_hand_positions_to_list(myhand,h,w,c)
+            elif len(self.results.multi_hand_landmarks) == 1:
+                myhand = self.results.multi_hand_landmarks[0]
+                left_hand = self.append_hand_positions_to_list(myhand,h,w,c)
         return left_hand, right_hand
 
 def main():
