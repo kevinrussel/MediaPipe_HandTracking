@@ -43,6 +43,15 @@ class handDetector():
                     landmarklist.append([id,cx,cy])
                     if id == 4:
                         specific_point.append([id,cx,cy])
+
+                myhand = self.results.multi_hand_landmarks[1]
+                for id,landmark in enumerate(myhand.landmark):
+                    h,w,c = image.shape
+                    ## normalizing now
+                    cx,cy = int(landmark.x*w), int(landmark.y*h)
+                    landmarklist.append([id,cx,cy])
+                    if id == 4:
+                        specific_point.append([id,cx,cy])
         return landmarklist, specific_point
 
 def main():
