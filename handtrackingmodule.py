@@ -4,7 +4,6 @@ import time
 
 class handDetector():
 
-
     def __init__(self, mode = False,max_hands = 2, min_detection_confidence = 0.5, track_confidence =0.5):
         
         self.mode = mode
@@ -16,7 +15,9 @@ class handDetector():
         self.hands = self.mpHands.Hands(self.mode,self.max_hands,1,self.min_detection_confidence,self.track_confidence)
         self.mpDraw = mp.solutions.drawing_utils
        
-    
+    '''
+    This function plots out where each point is on the hand.
+    '''
     def findHands(self,image,draw=True):
         imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(imageRBG)
@@ -26,11 +27,14 @@ class handDetector():
                     self.mpDraw.draw_landmarks(image,hand,self.mpHands.HAND_CONNECTIONS)
         return image
 
+    '''
+    This function draws a line between two points
+    '''
     def draw_line(self,image,left_point,right_point):
         return cv2.line(image,left_point,right_point,(0, 255, 0), 3)
     
     '''
-    This function returns the list
+    This function returns the list of positions of both hands when they are BOTH present.
     '''
     def findposition(self,image,handNumber = 0):
         left_hand = []
