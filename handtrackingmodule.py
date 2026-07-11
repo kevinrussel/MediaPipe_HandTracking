@@ -49,16 +49,13 @@ class handDetector():
     def findposition(self,image,handNumber = 0):
         left_hand = []
         right_hand = []
+        h,w,c = image.shape
         if self.results.multi_hand_landmarks:
-            if len(self.results.multi_hand_landmarks) == 2:
-                h,w,c = image.shape
+            if len(self.results.multi_hand_landmarks) == 2:        
                 myhand = self.results.multi_hand_landmarks[0]
                 left_hand = self.append_hand_positions_to_list(myhand,h,w,c)
                 myhand = self.results.multi_hand_landmarks[1]
-                for id,landmark in enumerate(myhand.landmark):
-                    ## normalizing now
-                    cx,cy = int(landmark.x*w), int(landmark.y*h)
-                    right_hand.append([id,cx,cy])
+                right_hand = self.append_hand_positions_to_list(myhand,h,w,c)
         return left_hand, right_hand
 
 def main():
