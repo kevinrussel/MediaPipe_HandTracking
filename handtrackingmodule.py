@@ -28,7 +28,11 @@ class handDetector():
 
     def draw_line(self,image,left_point,right_point):
         return cv2.line(image,left_point,right_point,(0, 255, 0), 3)
-    def findposition(self,image,handNumber = 0,draw=True):
+    
+    '''
+    This function returns the list
+    '''
+    def findposition(self,image,handNumber = 0):
         left_hand = []
         right_hand = []
         if self.results.multi_hand_landmarks:
