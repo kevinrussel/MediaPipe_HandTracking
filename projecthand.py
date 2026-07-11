@@ -15,9 +15,9 @@ while True:
     success, image = cap.read()
     img = hand.findHands(image,True)
     left_hand,right_hand = hand.findposition(image)
-    if(len(left_hand)!= 0):
-        left_hand = (specific_point[0][1],specific_point[0][2])
-        right_hand = (specific_point[1][1],specific_point[1][2])
+    if(len(left_hand)!= 0) and len(right_hand) != 0:
+        lefthandpoint = (left_hand[4][0][1],left_hand[0][2])
+        righthandpoint = (right_hand[4][1][1],right_hand[4][1][2])
         img = hand.draw_line(img,left_hand,right_hand)
     cTime = time.time()
     fps = 1/(cTime-pTime)
