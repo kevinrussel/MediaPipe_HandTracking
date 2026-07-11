@@ -37,7 +37,8 @@ class handDetector():
                     ## normalizing now
                     cx,cy = int(landmark.x*w), int(landmark.y*h)
                     landmarklist.append([id,cx,cy])
-                    ifid == 4:
+                    if id == 4:
+                        specific_point.append([id,cx,cy])
         return landmarklist, specific_point
 
 def main():

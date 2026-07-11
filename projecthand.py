@@ -14,11 +14,10 @@ while True:
     ## getting frame
     success, image = cap.read()
     img = hand.findHands(image,True)
-    landmarklist = hand.findposition(image)
-    print(len(landmarklist))
-    print("\n")
+    landmarklist,specific_point = hand.findposition(image)
     if(len(landmarklist)!= 0):
         print(landmarklist[4])
+        print(specific_point)
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
