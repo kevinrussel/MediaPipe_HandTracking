@@ -38,17 +38,14 @@ class handDetector():
                     h,w,c = image.shape
                     ## normalizing now
                     cx,cy = int(landmark.x*w), int(landmark.y*h)
-                    lefthand.append([id,cx,cy])
-
+                    left_hand.append([id,cx,cy])
                 myhand = self.results.multi_hand_landmarks[1]
                 for id,landmark in enumerate(myhand.landmark):
                     h,w,c = image.shape
                     ## normalizing now
                     cx,cy = int(landmark.x*w), int(landmark.y*h)
-                    landmarklist.append([id,cx,cy])
-                    if id == 4:
-                        specific_point.append([id,cx,cy])
-        return landmarklist, specific_point
+                    right_hand.append([id,cx,cy])
+        return left_hand, right_hand
 
 def main():
     cap = cv2.VideoCapture(0)
