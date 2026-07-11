@@ -25,7 +25,9 @@ class handDetector():
                 if draw:
                     self.mpDraw.draw_landmarks(image,hand,self.mpHands.HAND_CONNECTIONS)
         return image
-    
+
+    def draw_line(self,image,left_point,right_point):
+        pass
     def findposition(self,image,handNumber = 0,draw=True):
         landmarklist = []
         specific_point = []
