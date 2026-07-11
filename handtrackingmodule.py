@@ -28,6 +28,7 @@ class handDetector():
     
     def findposition(self,image,handNumber = 0,draw=True):
         landmarklist = []
+        specific_point = []
         if self.results.multi_hand_landmarks:
             if len(self.results.multi_hand_landmarks) == 2:
                 myhand = self.results.multi_hand_landmarks[handNumber]
@@ -36,7 +37,8 @@ class handDetector():
                     ## normalizing now
                     cx,cy = int(landmark.x*w), int(landmark.y*h)
                     landmarklist.append([id,cx,cy])
-        return landmarklist
+                    ifid == 4:
+        return landmarklist, specific_point
 
 def main():
     cap = cv2.VideoCapture(0)
