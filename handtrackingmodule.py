@@ -37,10 +37,11 @@ class handDetector():
     def append_hand_positions_to_list(self,hand, height, width, channel):
         positions = []
         for id,landmark in enumerate(hand.landmark):
-                    h,w,c = image.shape
-                    ## normalizing now
-                    cx,cy = int(landmark.x*width), int(landmark.y*height)
-                    positions.append([id,cx,cy])
+            ## normalizing now
+            cx,cy = int(landmark.x*width), int(landmark.y*height)
+            positions.append([id,cx,cy])
+        return positions
+    
 
     '''
     This function returns the list of positions of both hands when they are BOTH present.
@@ -51,12 +52,8 @@ class handDetector():
         if self.results.multi_hand_landmarks:
             if len(self.results.multi_hand_landmarks) == 2:
                 h,w,c = image.shape
-                myhand = self.results.multi_hand_landmarks[handNumber]
-                for id,landmark in enumerate(myhand.landmark):
-                    
-                    ## normalizing now
-                    cx,cy = int(landmark.x*w), int(landmark.y*h)
-                    left_hand.append([id,cx,cy])
+                myhand = self.results.multi_hand_landmarks[0]
+                left_hand = self.append_hand_positions_to_list(myhand,h,w,c)
                 myhand = self.results.multi_hand_landmarks[1]
                 for id,landmark in enumerate(myhand.landmark):
                     ## normalizing now
