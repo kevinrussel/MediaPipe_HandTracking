@@ -27,6 +27,8 @@ class handDetector():
         return image
 
     def draw_line(self,image,left_point,right_point):
+        
+        
         pass
     def findposition(self,image,handNumber = 0,draw=True):
         landmarklist = []
