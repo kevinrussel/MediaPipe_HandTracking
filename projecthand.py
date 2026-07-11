@@ -22,8 +22,8 @@ while True:
         indexpoint = (left_hand[8][1],left_hand[8][2])
         img = hand.draw_line(img,thumbpoint,indexpoint)
     elif(len(left_hand)!= 0) and len(right_hand) != 0:
-        leftpoint = (left_hand[4][1],left_hand[4][2])
-        rightpoint = (right_hand[4][1],right_hand[4][2])
+        leftpoint = (left_hand[8][1],left_hand[8][2])
+        rightpoint = (right_hand[8][1],right_hand[8][2])
         img = hand.draw_line(img,leftpoint,rightpoint)
     cTime = time.time()
     fps = 1/(cTime-pTime)
