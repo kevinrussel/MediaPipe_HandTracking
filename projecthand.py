@@ -13,9 +13,7 @@ cTime = 0
 while True:
     ## getting frame
     success, image = cap.read()
-    
     img = hand.findHands(image,True)
-    
     landmarklist,specific_point = hand.findposition(image)
     if(len(landmarklist)!= 0):
         left_hand = (specific_point[0][1],specific_point[0][2])
