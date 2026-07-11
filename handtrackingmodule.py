@@ -16,7 +16,7 @@ class handDetector():
         self.hands = self.mpHands.Hands(self.mode,self.max_hands,1,self.min_detection_confidence,self.track_confidence)
         self.mpDraw = mp.solutions.drawing_utils
        
-
+    
     def findHands(self,image,draw=True):
         imageRBG = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(imageRBG)
