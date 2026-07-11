@@ -15,7 +15,8 @@ while True:
     success, image = cap.read()
     img = hand.findHands(image,True)
     landmarklist = hand.findposition(image)
-
+    print(len(landmarklist))
+    print("\n")
     if(len(landmarklist)!= 0):
         print(landmarklist[4])
     cTime = time.time()
