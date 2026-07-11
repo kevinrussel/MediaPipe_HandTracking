@@ -33,6 +33,15 @@ class handDetector():
     def draw_line(self,image,left_point,right_point):
         return cv2.line(image,left_point,right_point,(0, 255, 0), 3)
     
+
+    def append_hand_positions_to_list(self,hand, height, width, channel):
+        positions = []
+        for id,landmark in enumerate(hand.landmark):
+                    h,w,c = image.shape
+                    ## normalizing now
+                    cx,cy = int(landmark.x*w), int(landmark.y*h)
+                    left_hand.append([id,cx,cy])
+
     '''
     This function returns the list of positions of both hands when they are BOTH present.
     '''
@@ -41,6 +50,7 @@ class handDetector():
         right_hand = []
         if self.results.multi_hand_landmarks:
             if len(self.results.multi_hand_landmarks) == 2:
+                
                 myhand = self.results.multi_hand_landmarks[handNumber]
                 for id,landmark in enumerate(myhand.landmark):
                     h,w,c = image.shape
