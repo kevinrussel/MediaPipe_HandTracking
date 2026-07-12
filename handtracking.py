@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(3)
 # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 mpDraw = mp.solutions.drawing_utils
