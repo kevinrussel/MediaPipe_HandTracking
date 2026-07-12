@@ -25,7 +25,7 @@ while True:
     if(len(left_hand)!= 0) and len(right_hand) == 0:
         thumbpoint = (left_hand[4][1],left_hand[4][2])
         indexpoint = (left_hand[8][1],left_hand[8][2])
-        hypot = calculate_hypot(thumbpoint[8][1],thumbpoint[8][2],indexpoint[8][1],indexpoint[8][2])
+        hypot = calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
         print(hypot)
         img = hand.draw_line(img,thumbpoint,indexpoint)
     elif(len(left_hand)!= 0) and len(right_hand) != 0:
