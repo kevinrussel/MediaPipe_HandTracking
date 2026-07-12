@@ -2,6 +2,7 @@ from handtrackingmodule import handDetector as hd
 import cv2
 import mediapipe as mp
 import time
+import math
 
 widthcam,height = 1000,1000
 hand = hd()
@@ -10,6 +11,10 @@ cap.set(3,widthcam)
 cap.set(4,height)
 pTime = 0
 cTime = 0
+
+def calculate_hypot(x1,y1,x2,y2):
+    return math.hypot(x1,y1,x2,y2)
+
 
     
 while True:
@@ -20,6 +25,8 @@ while True:
     if(len(left_hand)!= 0) and len(right_hand) == 0:
         thumbpoint = (left_hand[4][1],left_hand[4][2])
         indexpoint = (left_hand[8][1],left_hand[8][2])
+        hypot = calculate_hypot(thumbpoint[8][1],thumbpoint[8][2],indexpoint[8][1],indexpoint[8][2])
+        print(hypot)
         img = hand.draw_line(img,thumbpoint,indexpoint)
     elif(len(left_hand)!= 0) and len(right_hand) != 0:
         leftpoint = (left_hand[8][1],left_hand[8][2])
