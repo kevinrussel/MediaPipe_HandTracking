@@ -30,8 +30,12 @@ while True:
         indexpoint = (left_hand[8][1],left_hand[8][2])
         hypot = calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
         percent = np.interp(hypot,[30,270],[0,100])
-        print(f'distance:{hypot} percent:{percent}')
-        print(percent)
+        if(percent > 40 and percent < 60):
+            print("HOLD")
+        elif(percent<=40):
+            print("DOWN")
+        else:
+            print("UP")
         img = hand.draw_line(img,thumbpoint,indexpoint)
         
     # elif(len(left_hand)!= 0) and len(right_hand) != 0:
