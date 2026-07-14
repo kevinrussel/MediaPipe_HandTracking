@@ -3,6 +3,9 @@ import cv2
 import mediapipe as mp
 import time
 import math
+import numpy as np
+
+
 
 widthcam,height = 1000,1000
 hand = hd()
