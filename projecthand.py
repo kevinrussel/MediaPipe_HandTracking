@@ -29,7 +29,9 @@ while True:
         thumbpoint = (left_hand[4][1],left_hand[4][2])
         indexpoint = (left_hand[8][1],left_hand[8][2])
         hypot = calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
-        print(hypot)
+        percent = np.interp(hypot,[30,270],[0,100])
+        print(f'distance:{hypot} percent:{percent}')
+        print(percent)
         img = hand.draw_line(img,thumbpoint,indexpoint)
         
     # elif(len(left_hand)!= 0) and len(right_hand) != 0:
