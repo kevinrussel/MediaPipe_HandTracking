@@ -4,7 +4,7 @@ import mediapipe as mp
 import time
 import math
 import numpy as np
-
+import socket
 
 
 widthcam,height = 1000,1000
@@ -14,11 +14,13 @@ cap.set(3,widthcam)
 cap.set(4,height)
 pTime = 0
 cTime = 0
-
+server_address = "127.0.0.1"
+port = 8080
+message = b"hello world"
 def calculate_hypot(x1,y1,x2,y2):
     return math.hypot(x2-x1,y2-y1)
 
-
+udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     
 while True:
     ## getting frame
@@ -50,5 +52,6 @@ while True:
     cv2.putText(image,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
     
     cv2.imshow("Image", image)
+    udp_client_socket.sendto(message,(server_address,port))
     cv2.waitKey(1)
     cv2.waitKey(1)
