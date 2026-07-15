@@ -48,6 +48,7 @@ while True:
     pTime = cTime
     cv2.putText(image,str(int(fps)),(10,70),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
     cv2.putText(image,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
+    cv2.rectangle(image,(200,200),(300,300),color=(255, 255, 255))
     cv2.imshow("Image", image)
     cv2.waitKey(1)
     cv2.waitKey(1)
