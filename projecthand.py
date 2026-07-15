@@ -25,6 +25,7 @@ while True:
     success, image = cap.read()
     img = hand.findHands(image,True)
     left_hand,right_hand = hand.findposition(image)
+    percent = 0
     if(len(left_hand)!= 0) and len(right_hand) == 0:
         thumbpoint = (left_hand[4][1],left_hand[4][2])
         indexpoint = (left_hand[8][1],left_hand[8][2])
@@ -46,6 +47,7 @@ while True:
     fps = 1/(cTime-pTime)
     pTime = cTime
     cv2.putText(image,str(int(fps)),(10,70),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
+    cv2.putText(image,str(percent),(90,90),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
     cv2.imshow("Image", image)
     cv2.waitKey(1)
     cv2.waitKey(1)
