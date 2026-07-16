@@ -16,6 +16,7 @@ pTime = 0
 cTime = 0
 server_address = "127.0.0.1"
 port = 8080
+filled = 400
 message = b"hello world"
 def calculate_hypot(x1,y1,x2,y2):
     return math.hypot(x2-x1,y2-y1)
@@ -48,10 +49,14 @@ while True:
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
+
+    if(percent > 0):
+        filled = 400 - percent
     cv2.putText(image,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
     cv2.putText(image,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
     
     cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
+    cv2.rectangle(img,(50,filled),(85,400),(0,255,0),cv2.FILLED)
     cv2.imshow("Image", image)
     udp_client_socket.sendto(message,(server_address,port))
     cv2.waitKey(1)
