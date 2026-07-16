@@ -52,11 +52,14 @@ while True:
 
     if(percent > 0):
         filled = 400 - percent
+    elif percent == 0:
+        filled = 400
+    filling = np.interp(filled,[50,300],[400,150])
     cv2.putText(image,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
     cv2.putText(image,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
     
     cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
-    cv2.rectangle(img,(50,filled),(85,400),(0,255,0),cv2.FILLED)
+    cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
     cv2.imshow("Image", image)
     udp_client_socket.sendto(message,(server_address,port))
     cv2.waitKey(1)
