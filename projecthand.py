@@ -54,6 +54,11 @@ class Hand_Drone:
             movement_speed = self.drone_move_up(percent)
         return movement,movement_speed
 
+    def calculate_fps(self):
+        self.cTime = time.time()
+        fps = 1/(self.cTime-self.pTime)
+        self.pTime = self.cTime
+        return fps
     def worker(self):
         while True:
             ## getting frame
@@ -72,16 +77,14 @@ class Hand_Drone:
                     movement,movement_speed = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     
-                self.cTime = time.time()
-                fps = 1/(self.cTime-self.pTime)
-                self.pTime = self.cTime
+                fps = self.calculate_fps()
                 filling = np.interp(percent,[0,100],[400,150])
-                cv2.putText(image,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
-                cv2.putText(image,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
+                cv2.putText(img,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
+                cv2.putText(img,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
                 print(f"{movement} and speed {movement_speed}")
                 cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
                 cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
-                cv2.imshow("Image", image)
+                cv2.imshow("Image", img)
                 # self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
                 cv2.waitKey(1)
 
