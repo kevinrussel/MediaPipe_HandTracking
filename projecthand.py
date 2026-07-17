@@ -8,8 +8,6 @@ import socket
 class Hand_Drone:
 
     def __init__(self):
-       
-
         self.widthcam = 1000
         self.height =1000
         self.hand = hd()
