@@ -18,13 +18,14 @@ class Hand_Drone:
         self.cTime = 0
         self.server_address = "127.0.0.1"
         self.port = 8080
+        udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM
 
 # message = b"hello world"
     def calculate_hypot(self,x1,y1,x2,y2):
         return math.hypot(x2-x1,y2-y1)
 
-    def func(self):
-        udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)   
+    def worker(self):
+        )   
         while True:
             ## getting frame
             success, image = cap.read()
