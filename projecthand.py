@@ -10,15 +10,16 @@ class Hand_Drone:
     def __init__(self):
        
 
-widthcam,height = 1000,1000
-hand = hd()
-cap = cv2.VideoCapture(0)
-cap.set(3,widthcam)
-cap.set(4,height)
-pTime = 0
-cTime = 0
-server_address = "127.0.0.1"
-port = 8080
+        self.widthcam = 1000
+        height = 1000,1000
+        hand = hd()
+        cap = cv2.VideoCapture(0)
+        cap.set(3,widthcam)
+        cap.set(4,height)
+        pTime = 0
+        cTime = 0
+        server_address = "127.0.0.1"
+        port = 8080
 
 message = b"hello world"
 def calculate_hypot(x1,y1,x2,y2):
