@@ -59,12 +59,9 @@ class Hand_Drone:
                     movement = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     
-                cTime = time.time()
-                fps = 1/(cTime-pTime)
-                pTime = cTime
-
-
-
+                self.cTime = time.time()
+                fps = 1/(self.cTime-self.pTime)
+                self.pTime = self.cTime
                 filling = np.interp(percent,[0,100],[400,150])
 
 
@@ -76,4 +73,4 @@ class Hand_Drone:
                 cv2.imshow("Image", image)
                 self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
                 cv2.waitKey(1)
-                cv2.waitKey(1)
+              
