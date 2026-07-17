@@ -20,7 +20,10 @@ class Hand_Drone:
         self.port = 8080
         udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM
 
-# message = b"hello world"
+    def create_header(self,percent):
+        pass
+
+
     def calculate_hypot(self,x1,y1,x2,y2):
         return math.hypot(x2-x1,y2-y1)
 
