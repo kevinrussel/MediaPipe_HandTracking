@@ -29,9 +29,10 @@ class Hand_Drone:
         return math.hypot(x2-x1,y2-y1)
 
 
-    def calculate_percentage(self,hypot):
+    def calculate_percentage(self,hypot) -> int: 
         percent = np.interp(hypot,[30,270],[0,100])
-        return 
+        return percent
+    
     def worker(self):
         while True:
             ## getting frame
