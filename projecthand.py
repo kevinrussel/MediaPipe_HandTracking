@@ -46,6 +46,9 @@ class Hand_Drone:
         movement_speed = 0
         if(percent > 40 and percent < 60):
             movement = "HOLD"
+        elif (percent == 0):
+            movement = "LAND"
+            movement_speed = 0
         elif(percent<=40):
             movement = "DOWN"
             movement_speed = self.drone_move_down(percent)
