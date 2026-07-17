@@ -48,10 +48,11 @@ class Hand_Drone:
             movement = "HOLD"
         elif(percent<=40):
             movement = "DOWN"
-            movement_speed = self.drone_move_donw
+            movement_speed = self.drone_move_down(percent)
         else:
             movement = "UP"
-        return movement
+            movement_speed = self.drone_move_up(percent)
+        return movement,movement_speed
 
     def worker(self):
         while True:
