@@ -37,11 +37,11 @@ class Hand_Drone:
         movement = "HOLD"
         if(percent > 40 and percent < 60):
             movement = "HOLD"
-        elif(self.percent<=40):
+        elif(percent<=40):
             movement = "DOWN"
         else:
             movement = "UP"
-
+        return movement
 
     def worker(self):
         while True:
