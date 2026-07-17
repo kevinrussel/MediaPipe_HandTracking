@@ -18,7 +18,7 @@ class Hand_Drone:
         self.cTime = 0
         self.server_address = "127.0.0.1"
         self.port = 8080
-        udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM
+        udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
     def create_header(self,percent):
         pass
