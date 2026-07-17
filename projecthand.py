@@ -19,7 +19,7 @@ class Hand_Drone:
         self.server_address = "127.0.0.1"
         self.port = 8080
         self.udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-        self.percent = 0
+        
 
     def create_header(self,percent):
         pass
@@ -30,20 +30,21 @@ class Hand_Drone:
 
 
     def calculate_percentage(self,hypot):
-        self.percent = np.interp(hypot,[30,270],[0,100])
-        
+        percent = np.interp(hypot,[30,270],[0,100])
+        return 
     def worker(self):
         while True:
             ## getting frame
             success, image = self.cap.read()
             if success:
+                percent = 0
                 img = self.hand.findHands(image,True)
                 left_hand,right_hand = self.hand.findposition(image)
                 if(len(left_hand)!= 0) and len(right_hand) == 0:
                     thumbpoint = (left_hand[4][1],left_hand[4][2])
                     indexpoint = (left_hand[8][1],left_hand[8][2])
                     hypot = self.calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
-                    self.percent = np.interp(hypot,[30,270],[0,100])
+                    percent =  self.calculate_percentage(hypot) 
                     if(self.percent > 40 and self.percent < 60):
                         print("HOLD")
                     elif(self.percent<=40):
