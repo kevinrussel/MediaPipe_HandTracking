@@ -33,6 +33,16 @@ class Hand_Drone:
         percent = np.interp(hypot,[30,270],[0,100])
         return percent
     
+    def drone_movement(self,percent):
+        movement = "HOLD"
+        if(percent > 40 and percent < 60):
+            movement = "HOLD"
+        elif(self.percent<=40):
+            movement = "DOWN"
+        else:
+            movement = "UP"
+
+
     def worker(self):
         while True:
             ## getting frame
@@ -46,12 +56,7 @@ class Hand_Drone:
                     indexpoint = (left_hand[8][1],left_hand[8][2])
                     hypot = self.calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
                     percent =  self.calculate_percentage(hypot) 
-                    if(self.percent > 40 and self.percent < 60):
-                        print("HOLD")
-                    elif(self.percent<=40):
-                        print("DOWN")
-                    else:
-                        print("UP")
+                    
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     
                 cTime = time.time()
