@@ -11,13 +11,13 @@ class Hand_Drone:
        
 
         self.widthcam = 1000
-        height = 1000,1000
-        hand = hd()
-        cap = cv2.VideoCapture(0)
-        cap.set(3,widthcam)
-        cap.set(4,height)
-        pTime = 0
-        cTime = 0
+        self.height =1000
+        self.hand = hd()
+        self.cap = cv2.VideoCapture(0)
+        self.cap.set(3,self.widthcam)
+        self.cap.set(4,self.height)
+        self.pTime = 0
+        self.cTime = 0
         server_address = "127.0.0.1"
         port = 8080
 
