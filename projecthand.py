@@ -60,6 +60,7 @@ class Hand_Drone:
             success, image = self.cap.read()
             if success:
                 movement = ""
+                movement_speed = 0
                 percent = 0
                 img = self.hand.findHands(image,True)
                 left_hand,right_hand = self.hand.findposition(image)
@@ -68,7 +69,7 @@ class Hand_Drone:
                     indexpoint = (left_hand[8][1],left_hand[8][2])
                     hypot = self.calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
                     percent =  self.calculate_percentage(hypot) 
-                    movement = self.drone_movement(percent)
+                    movement,movement_speed = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     
                 self.cTime = time.time()
@@ -77,7 +78,7 @@ class Hand_Drone:
                 filling = np.interp(percent,[0,100],[400,150])
                 cv2.putText(image,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
                 cv2.putText(image,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
-                print(movement)
+                print(f"{movement} and speed {movement_speed}")
                 cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
                 cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
                 cv2.imshow("Image", image)
