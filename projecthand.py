@@ -56,7 +56,7 @@ class Hand_Drone:
                     indexpoint = (left_hand[8][1],left_hand[8][2])
                     hypot = self.calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
                     percent =  self.calculate_percentage(hypot) 
-                    
+                    movement = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     
                 cTime = time.time()
@@ -74,6 +74,6 @@ class Hand_Drone:
                 cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
                 cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
                 cv2.imshow("Image", image)
-                udp_client_socket.sendto(message,(server_address,port))
+                self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
                 cv2.waitKey(1)
                 cv2.waitKey(1)
