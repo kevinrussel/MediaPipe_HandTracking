@@ -5,7 +5,10 @@ import time
 import math
 import numpy as np
 import socket
+class Hand_Drone:
 
+    def __init__(self):
+        pass
 
 widthcam,height = 1000,1000
 hand = hd()
