@@ -18,8 +18,8 @@ class Hand_Drone:
         self.cTime = 0
         self.server_address = "127.0.0.1"
         self.port = 8080
-        udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-        percent = 0
+        self.udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+        self.percent = 0
 
     def create_header(self,percent):
         pass
@@ -35,24 +35,19 @@ class Hand_Drone:
             if success:
                 img = self.hand.findHands(image,True)
                 left_hand,right_hand = self.hand.findposition(image)
-                
                 if(len(left_hand)!= 0) and len(right_hand) == 0:
                     thumbpoint = (left_hand[4][1],left_hand[4][2])
                     indexpoint = (left_hand[8][1],left_hand[8][2])
                     hypot = self.calculate_hypot(left_hand[4][1],left_hand[4][2],left_hand[8][1],left_hand[8][2])
-                    percent = np.interp(hypot,[30,270],[0,100])
-                    if(percent > 40 and percent < 60):
+                    self.percent = np.interp(hypot,[30,270],[0,100])
+                    if(self.percent > 40 and self.percent < 60):
                         print("HOLD")
-                    elif(percent<=40):
+                    elif(self.percent<=40):
                         print("DOWN")
                     else:
                         print("UP")
-                    img = hand.draw_line(img,thumbpoint,indexpoint)
+                    img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     
-                # elif(len(left_hand)!= 0) and len(right_hand) != 0:
-                #     leftpoint = (left_hand[8][1],left_hand[8][2])
-                #     rightpoint = (right_hand[8][1],right_hand[8][2])
-                #     img = hand.draw_line(img,leftpoint,rightpoint)
                 cTime = time.time()
                 fps = 1/(cTime-pTime)
                 pTime = cTime
