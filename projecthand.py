@@ -34,7 +34,7 @@ class Hand_Drone:
         return percent
     
     def drone_move_down(self,percent):
-        movement_speed = np.interp(percent,[0,40],[-20,-80])
+        movement_speed = np.interp(percent,[0,40],[-80,-20])
         return movement_speed
     
     def drone_move_up(self,percent):
