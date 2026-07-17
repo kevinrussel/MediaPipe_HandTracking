@@ -18,8 +18,8 @@ class Hand_Drone:
         self.cap.set(4,self.height)
         self.pTime = 0
         self.cTime = 0
-        server_address = "127.0.0.1"
-        port = 8080
+        self.server_address = "127.0.0.1"
+        self.port = 8080
 
 message = b"hello world"
 def calculate_hypot(x1,y1,x2,y2):
