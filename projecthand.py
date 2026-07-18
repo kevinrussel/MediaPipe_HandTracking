@@ -21,7 +21,9 @@ class Hand_Drone:
         self.udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         
 
-    def create_header(self,percent):
+    def create_header(self,movment,movement_speed):
+        print(movment)
+        print(movement_speed)
         pass
 
 
@@ -89,7 +91,7 @@ class Hand_Drone:
                     percent =  self.calculate_percentage(hypot) 
                     movement,movement_speed = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
-                    
+                    self.create_header(movement,movement_speed)
                 fps = self.calculate_fps()
                 self.image_on_screen(img,fps,percent,movement,movement_speed)
                 # self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
