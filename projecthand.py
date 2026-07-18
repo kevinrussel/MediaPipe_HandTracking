@@ -62,7 +62,7 @@ class Hand_Drone:
         movement = "HOLD"
         movement_speed = 0
         if(percent > 40 and percent < 60):
-            movement = "HOLD"
+            movement = "HOLDs"
         elif (percent == 0):
             movement = "LAND"
             movement_speed = 0
