@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp
 import time
-import struct
+
 class handDetector():
 
     def __init__(self, mode = False,max_hands = 2, min_detection_confidence = 0.5, track_confidence =0.5):
