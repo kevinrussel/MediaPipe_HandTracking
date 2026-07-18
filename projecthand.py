@@ -115,7 +115,8 @@ class Hand_Drone:
                     movement,movement_speed = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     header = self.create_header(movement,movement_speed)
-                    self.udp_client_socket.sendto(header,(self.server_address,self.port))
+                    if(header):
+                        self.udp_client_socket.sendto(header,(self.server_address,self.port))
 
                 fps = self.calculate_fps()
                 self.image_on_screen(img,fps,percent,movement,movement_speed)
