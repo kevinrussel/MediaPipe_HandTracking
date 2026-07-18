@@ -18,8 +18,9 @@ class Hand_Drone:
         self.cap.set(4,self.height)
         self.pTime = 0
         self.cTime = 0
-        self.server_address = "127.0.0.1"
+        self.server_address = "192.168.10.2"
         self.port = 8080
+        self.already_sent_takeoff = False
         self.udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         
 
@@ -28,10 +29,14 @@ class Hand_Drone:
         timestamp = time.time_ns()
         print(f"{movement} and speed {movement_speed}")
 
-        if(movement == "LAND" or movement == "TAKEOFF"):
-            command_type = b's'
+        if(movement == "LAND"):
+            command_type = b'l'
+            movement_speed = 0
+        elif(movement == "TAKEOFF"):
+            command_type = b't'
+            movement_speed = 0
         else:
-            command_type = b'd'
+            command_type = b'm'
         header = struct.pack('!Qch',timestamp,command_type,movement_speed)
         return header
         
@@ -62,8 +67,13 @@ class Hand_Drone:
             movement = "LAND"
             movement_speed = 0
         elif (percent == 100):
-            movement = "TAKEOFF"
-            movement_speed = 60
+            if(self.already_sent_takeoff == False):
+
+                movement = "TAKEOFF"
+                movement_speed = 60
+                self.already_sent_takeoff = True
+            else:
+                return None
         elif(percent<=40):
             movement = "DOWN"
             movement_speed = self.drone_move_down(percent)
@@ -104,12 +114,11 @@ class Hand_Drone:
                     percent =  self.calculate_percentage(hypot) 
                     movement,movement_speed = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
-                    self.create_header(movement,movement_speed)
-                    self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
+                    header = self.create_header(movement,movement_speed)
+                    self.udp_client_socket.sendto(header,(self.server_address,self.port))
 
                 fps = self.calculate_fps()
                 self.image_on_screen(img,fps,percent,movement,movement_speed)
-                # self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
                 cv2.waitKey(1)
 
 handdrone = Hand_Drone()
