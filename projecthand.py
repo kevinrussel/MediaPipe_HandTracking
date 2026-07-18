@@ -88,7 +88,7 @@ class Hand_Drone:
         self.pTime = self.cTime
         return fps
     
-    def image_on_screen(self,img,fps,percent,movement,movement_speed):
+    def image_on_screen(self,img,fps,percent):
         filling = np.interp(percent,[0,100],[400,150])
         cv2.putText(img,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
         cv2.putText(img,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
