@@ -34,7 +34,7 @@ class Hand_Drone:
             command_type = b'd'
         header = struct.pack('!Qc',timestamp,command_type)
         return header
-        pass
+        
 
 
     def calculate_hypot(self,x1,y1,x2,y2):
