@@ -33,6 +33,8 @@ class Hand_Drone:
             command_type = b'l'
             movement_speed = 0
         elif(movement == "TAKEOFF"):
+            if(self.already_sent_takeoff):
+                return None
             command_type = b't'
             movement_speed = 0
         else:
