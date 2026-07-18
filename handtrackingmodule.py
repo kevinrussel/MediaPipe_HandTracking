@@ -27,14 +27,7 @@ class handDetector():
                     self.mpDraw.draw_landmarks(image,hand,self.mpHands.HAND_CONNECTIONS)
         return image
 
-    def create_header(self,command,speed):
-        timestamp = time.time_ns()
-        if(command == "land" or command == "takeoff"):
-            command_type = b's'
-        else:
-            command_type = b'd'
-        header = struct.pack('!Qc',timestamp,command_type)
-        return header
+    
 
     '''
     This function draws a line between two points
