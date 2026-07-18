@@ -32,7 +32,7 @@ class Hand_Drone:
             command_type = b's'
         else:
             command_type = b'd'
-        header = struct.pack('!Qc',timestamp,command_type)
+        header = struct.pack('!Qch',timestamp,command_type,movement_speed)
         return header
         
 
@@ -105,6 +105,8 @@ class Hand_Drone:
                     movement,movement_speed = self.drone_movement(percent)
                     img = self.hand.draw_line(img,thumbpoint,indexpoint)
                     self.create_header(movement,movement_speed)
+                    self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
+
                 fps = self.calculate_fps()
                 self.image_on_screen(img,fps,percent,movement,movement_speed)
                 # self.udp_client_socket.sendto(self.message,(self.server_address,self.port))
