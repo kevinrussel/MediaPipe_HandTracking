@@ -5,7 +5,9 @@ import time
 import math
 import numpy as np
 import socket
+import struct
 class Hand_Drone:
+
 
     def __init__(self):
         self.widthcam = 1000
@@ -25,6 +27,13 @@ class Hand_Drone:
 
         timestamp = time.time_ns()
         print(f"{movement} and speed {movement_speed}")
+
+        if(movement == "LAND" or movement == "TAKEOFF"):
+            command_type = b's'
+        else:
+            command_type = b'd'
+        header = struct.pack('!Qc',timestamp,command_type)
+        return header
         pass
 
 
