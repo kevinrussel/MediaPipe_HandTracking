@@ -21,9 +21,10 @@ class Hand_Drone:
         self.udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         
 
-    def create_header(self,movment,movement_speed):
-        print(movment)
-        print(movement_speed)
+    def create_header(self,movement,movement_speed):
+
+        timestamp = time.time_ns()
+        print(f"{movement} and speed {movement_speed}")
         pass
 
 
@@ -51,6 +52,9 @@ class Hand_Drone:
         elif (percent == 0):
             movement = "LAND"
             movement_speed = 0
+        elif (percent == 100):
+            movement = "TAKEOFF"
+            movement_speed = 60
         elif(percent<=40):
             movement = "DOWN"
             movement_speed = self.drone_move_down(percent)
@@ -69,7 +73,7 @@ class Hand_Drone:
         filling = np.interp(percent,[0,100],[400,150])
         cv2.putText(img,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
         cv2.putText(img,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
-        print(f"{movement} and speed {movement_speed}")
+        # print(f"{movement} and speed {movement_speed}")
         cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
         cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
         cv2.imshow("Image", img)
