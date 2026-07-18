@@ -67,13 +67,8 @@ class Hand_Drone:
             movement = "LAND"
             movement_speed = 0
         elif (percent == 100):
-            if(self.already_sent_takeoff == False):
-
                 movement = "TAKEOFF"
                 movement_speed = 60
-                self.already_sent_takeoff = True
-            else:
-                return None
         elif(percent<=40):
             movement = "DOWN"
             movement_speed = self.drone_move_down(percent)
