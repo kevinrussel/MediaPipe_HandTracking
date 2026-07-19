@@ -3,7 +3,8 @@
 Kevin Russel
 
 July/26/2026
-(REA)
+
+![Demo](README_files/hand_gif.gif)
 A computer-vision system that lets you control a drone's altitude (takeoff, land, ascend, descend, hold) using a single hand gesture in front of a webcam. Hand tracking is powered by [MediaPipe](https://github.com/google-ai-edge/mediapipe) and [OpenCV](https://opencv.org/), and commands are streamed to the drone over UDP.
 
 The core idea: the distance between your **thumb tip** and **index finger tip** is measured, converted into a 0–100% "throttle" value, and mapped to a drone command that's packed into a binary UDP packet and sent to the drone's onboard receiver.
@@ -12,7 +13,7 @@ The core idea: the distance between your **thumb tip** and **index finger tip** 
 
 ## How It Works
 
-1. **Hand detection** — `handtrackingmodule.py` wraps MediaPipe's Hands solution to detect up to two hands per frame and expose the (x, y) pixel coordinates of all 21 landmarks per hand.
+1. **Hand detection** — `handtrackingmodule.py` wraps MediaPipe's Hands solution to detect up to two hands per frame and expose the (xc, y) pixel coordinates of all 21 landmarks per hand.
 2. **Gesture measurement** — `projecthand.py` reads landmark `4` (thumb tip) and landmark `8` (index tip) of the detected hand, and computes the Euclidean distance (hypotenuse) between them.
 3. **Percentage mapping** — that distance is linearly interpolated from a `[30, 270]` pixel range into a `[0, 100]` percentage range, representing how "open" the pinch gesture is.
 4. **Movement decision** — the percentage is translated into a drone command:
