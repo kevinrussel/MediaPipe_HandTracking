@@ -37,6 +37,7 @@ class Hand_Drone:
                 return None
             command_type = b't'
             movement_speed = 0
+            self.already_sent_takeoff = True
         else:
             command_type = b'm'
         header = struct.pack('!Qch',timestamp,command_type,movement_speed)
@@ -97,7 +98,8 @@ class Hand_Drone:
             color = (255,0,0)
         else:
             color = (51,255,255)
-        cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,color)   
+        if(self.already_sent_takeoff):
+            cv2.putText(img,str(movement),(400,200),cv2.FONT_HERSHEY_COMPLEX,1.7,color)   
         cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
         cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
         cv2.imshow("Image", img)
