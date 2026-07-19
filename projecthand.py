@@ -99,7 +99,7 @@ class Hand_Drone:
         else:
             color = (51,255,255)
         if(self.already_sent_takeoff):
-            cv2.putText(img,str(movement),(400,200),cv2.FONT_HERSHEY_COMPLEX,1.7,color)   
+            cv2.putText(img,str(movement),(400,200),cv2.FONT_HERSHEY_COMPLEX,1.25,color)   
         cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
         cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
         cv2.imshow("Image", img)
