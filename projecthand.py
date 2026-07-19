@@ -64,7 +64,7 @@ class Hand_Drone:
         movement = "HOLD"
         movement_speed = 0
         if(percent > 40 and percent < 60):
-            movement = "HOLDs"
+            movement = "HOLD"
         elif (percent == 0):
             movement = "LAND"
             movement_speed = 0
@@ -89,7 +89,13 @@ class Hand_Drone:
         filling = np.interp(percent,[0,100],[400,150])
         cv2.putText(img,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
         cv2.putText(img,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
-        cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
+        if movement == "HOLD":
+
+            cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(70,253,76))
+        elif movement == "UP":
+            cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(0,0,255))
+        else:
+            cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(255,0,))   
         cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
         cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
         cv2.imshow("Image", img)
