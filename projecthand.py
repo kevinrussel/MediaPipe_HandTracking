@@ -90,12 +90,14 @@ class Hand_Drone:
         cv2.putText(img,f"{str(int(fps))} fps",(10,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,8,255))
         cv2.putText(img,str(int(percent)),(500,400),cv2.FONT_HERSHEY_COMPLEX,2,(255,8,255))
         if movement == "HOLD":
-
-            cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(70,253,76))
+            color = (70,253,76)
         elif movement == "UP":
-            cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(0,0,255))
+            color = (0,0,255)
+        elif movement == "DOWN":
+            color = (255,0,0)
         else:
-            cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,(255,0,))   
+            color = (51,255,255)
+        cv2.putText(img,str(movement),(200,200),cv2.FONT_HERSHEY_COMPLEX,2,color)   
         cv2.rectangle(img,(50,150),(85,400),(0,255,0),3)
         cv2.rectangle(img,(50,int(filling)),(85,400),(0,255,0),cv2.FILLED)
         cv2.imshow("Image", img)
